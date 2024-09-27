@@ -42,7 +42,7 @@ Future myCSV(
   }
 
   // Generate the file name with a timestamp.
-  String givenFileName = "${fileName ?? 'item_export'}_";
+  String givenFileName = "${fileName ?? 'item_export'}.";
   DateTime now = DateTime.now();
   String formattedDate =
       fileTimeStamp ?? DateFormat('MM-dd-yyyy-HH-mm-ss').format(now);
@@ -190,10 +190,7 @@ Future myCSV(
     MimeType type = MimeType.csv;
     if (sharing == true) {
       String? unknownValue = await FileSaver.instance.saveAs(
-          name: '$givenFileName$formattedDate',
-          bytes: bytes2,
-          ext: '.csv',
-          mimeType: type);
+          name: '$givenFileName', bytes: bytes2, ext: 'csv', mimeType: type);
       XFile? myFile;
       if (unknownValue != null) {
         myFile = await convertFilePathToXFile(unknownValue);
